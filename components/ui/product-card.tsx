@@ -9,6 +9,7 @@ import PriceFormatter from "./price-format";
 import { useRouter } from "next/navigation";
 import { MouseEventHandler } from "react";
 import useExpandModal from "@/hooks/use-expand-modal";
+import useCart from "@/hooks/use-cart";
 
 interface ProductCard {
     data: Product,
@@ -19,6 +20,7 @@ const ProductCard: React.FC<ProductCard> = ({
 }) => {
     const router = useRouter();
     const expandModal = useExpandModal();
+    const cart = useCart();
 
     const handleClick = () => {
         router.push(`/product/${data?.id}`)
@@ -30,6 +32,11 @@ const ProductCard: React.FC<ProductCard> = ({
     }
 
     // const onExpand = (event) => {event.preventDefault (); expandModal.onOpen(d)}
+
+    const addToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+        event.stopPropagation();
+        cart.addItem(data);
+    }
 
     return ( 
         <div className="group cursor-pointer rounded-xl border p-3 space-y-4 space-x-4 bg-netral-100"
@@ -50,7 +57,7 @@ const ProductCard: React.FC<ProductCard> = ({
                         icon={<Expand size={18} className="text-gray-600"/>}
                         />
                         <IconButton 
-                        onClick={() => {}}
+                        onClick={addToCart}
                         icon={<ShoppingCart size={18} className="text-gray-600"/>}
                         />
                     </div>

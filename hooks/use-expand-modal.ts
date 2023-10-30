@@ -1,14 +1,14 @@
 import { create } from "zustand";
 import { Product } from "@/types";
 
-interface ExpandModaStore {
+interface ExpandModalStore {
     isOpen: boolean
     data?: Product
     onOpen: (data: Product) => void;
     onClose: () => void;
 };
 
-const useExpandModal = create<ExpandModaStore>((set) => ({
+const useExpandModal = create<ExpandModalStore>((set) => ({
     isOpen: false,
     data: undefined,
     onOpen: (data:Product) => set({ data: data, isOpen: true}),
