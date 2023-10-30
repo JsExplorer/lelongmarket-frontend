@@ -7,6 +7,8 @@ import { Expand, ShoppingCart } from "lucide-react";
 import { priceFormatter } from "@/lib/utilis";
 import PriceFormatter from "./price-format";
 import { useRouter } from "next/navigation";
+import { MouseEventHandler } from "react";
+import useExpandModal from "@/hooks/use-expand-modal";
 
 interface ProductCard {
     data: Product,
@@ -16,10 +18,18 @@ const ProductCard: React.FC<ProductCard> = ({
     data
 }) => {
     const router = useRouter();
+    const expandModal = useExpandModal();
 
     const handleClick = () => {
         router.push(`/product/${data?.id}`)
     }
+
+    const onExpand: MouseEventHandler<HTMLButtonElement> = (event) => {
+        event.stopPropagation();
+        expandModal.onOpen(data);
+    }
+
+    // const onExpand = (event) => {event.preventDefault (); expandModal.onOpen(d)}
 
     return ( 
         <div className="group cursor-pointer rounded-xl border p-3 space-y-4 space-x-4 bg-netral-100"
@@ -36,7 +46,7 @@ const ProductCard: React.FC<ProductCard> = ({
                 <div className="opacity-0 group-hover:opacity-100 absolute transition w-full bottom-2">
                     <div className="flex gap-x-6 justify-center">
                         <IconButton 
-                        onClick={() => {}}
+                        onClick={onExpand}
                         icon={<Expand size={18} className="text-gray-600"/>}
                         />
                         <IconButton 
@@ -51,7 +61,7 @@ const ProductCard: React.FC<ProductCard> = ({
                 <p className="text-md text-gray-600">{data?.category?.name}</p>
             </div>
             <div className="flex items-center justify-between font-semibold text-neutral-800">
-                ${priceFormatter.format(Number(data?.price))}
+                {priceFormatter.format(Number(data?.price))}
             </div>
         </div>
      );

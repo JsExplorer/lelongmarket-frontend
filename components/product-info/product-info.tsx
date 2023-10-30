@@ -24,7 +24,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
             <Separator className="my-4"/>
             <div className="flex items-center gap-x-4">
                 <h3 className="font-semibold text-1xl"> Size: </h3>
-                <p>{data?.size?.name}</p>
+                <p>{data?.size?.value}</p>
             </div>
             <div className="flex items-center gap-x-4">
                 <h3 className="font-semibold text-1xl"> Colour: </h3>

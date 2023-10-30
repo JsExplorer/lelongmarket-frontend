@@ -18,7 +18,7 @@ export interface Product {
     name: string
     price: string
     isSelling: boolean
-    size: SizeLimit
+    size: Size;
     images: Image[]
 }
 
