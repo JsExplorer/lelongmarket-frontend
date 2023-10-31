@@ -5,6 +5,8 @@ import { priceFormatter } from "@/lib/utilis";
 import { Separator } from "@/components/ui/separator";
 import Button from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
+import useCart from "@/hooks/use-cart";
+import { MouseEventHandler } from "react";
 
 interface ProductInfoProps {
     data: Product
@@ -13,6 +15,14 @@ interface ProductInfoProps {
 const ProductInfo: React.FC<ProductInfoProps> = ({
     data
 }) => {
+    const cart = useCart();
+
+    const addToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+        event.stopPropagation();
+        cart.addItem(data);
+    }
+
+
     return ( 
         <div>
             <h1 className="text-4xl font-semibold text-gray-800">{data.name}</h1>
@@ -31,7 +41,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
                 <p>Colour</p>
             </div>
             <div className="mt-10 flex items-center gap-x-3">
-                <Button className="flex items-center gap-x-1">
+                <Button className="flex items-center gap-x-1" onClick={addToCart}>
                     Add to Cart
                     <ShoppingCart />
                 </Button>
