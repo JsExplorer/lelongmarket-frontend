@@ -20,13 +20,13 @@ const CartSummary = () => {
             toast.success("Payment completed, your order will be processed.");
             removeAllItems();
         }
-        if (searchParams.get("cancelled")) {
+        if (searchParams.get("canceled")) {
             toast.error("Something went wrong.");
         }
     }, [searchParams, removeAllItems])
 
     const onCheckout = async () => {
-        const response = await axios.post(`http://localhost:3000/api/6700f4b7-b4c0-4646-a8e9-1a4f18279a30/checkout`, {
+        const response = await axios.post(`${process.env.NEXT_API_URL}/checkout`, {
             productIds: items.map((item) => item.id)
         });
         window.location = response.data.url;
