@@ -10,23 +10,23 @@ import useCart from "@/hooks/use-cart"
 
 const CartSummary = () => {
     const searchParams = useSearchParams();
-    const cartItems = useCart((state) => state.items);
-    const removeAllItems = useCart((state) => state.removeAll);
+    const items = useCart((state) => state.items);
+    const removeAll = useCart((state) => state.removeAll);
 
-    const totalPrice = cartItems.reduce((total, item) => { return total + Number(item.price)}, 0)
+    const totalPrice = items.reduce((total, item) => { return total + Number(item.price)}, 0)
 
     useEffect(() => {
         if (searchParams.get("success")) {
             toast.success("Payment completed, your order will be processed.");
         }
-        if (searchParams.get("cancelled")) {
+        if (searchParams.get("canceled")) {
             toast.error("Something went wrong.");
         }
-    }, [searchParams, removeAllItems])
+    }, [searchParams, removeAll])
 
     const onCheckout = async () => {
-        const response = await axios.post(`${process.env.NEXT_API_URL}/checkout`, {
-            productIds: cartItems.map((item) => item.id)
+        const response = await axios.post(`http://localhost:3000/api/6700f4b7-b4c0-4646-a8e9-1a4f18279a30/checkout`, {
+            productIds: items.map((item) => item.id)
         });
         window.location = response.data.url;
     }
