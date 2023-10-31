@@ -3,7 +3,7 @@
 import { Product } from "@/types";
 import { priceFormatter } from "@/lib/utilis";
 import { Separator } from "@/components/ui/separator";
-import Button from "@/components/ui/button";
+import Button from "@/components/ui/custom-button";
 import { ShoppingCart } from "lucide-react";
 import useCart from "@/hooks/use-cart";
 import { MouseEventHandler } from "react";

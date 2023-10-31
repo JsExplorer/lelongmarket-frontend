@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string";
-import Button from "@/components/ui/button";
+import Button from "@/components/ui/custom-button";
 import { cn } from "@/lib/utilis";
 import { Size } from "@/types";
 

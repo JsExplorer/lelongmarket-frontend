@@ -3,7 +3,7 @@
 import axios from "axios"
 import { useEffect } from "react"
 import { useSearchParams } from "next/navigation"
-import Button from "@/components/ui/button"
+import Button from "@/components/ui/custom-button"
 import { toast } from "react-hot-toast"
 import { priceFormatter } from "@/lib/utilis"
 import useCart from "@/hooks/use-cart"
@@ -20,7 +20,7 @@ const CartSummary = () => {
             toast.success("Payment completed, your order will be processed.");
             removeAllItems();
         }
-        if (searchParams.get("canceled")) {
+        if (searchParams.get("cancelled")) {
             toast.error("Something went wrong.");
         }
     }, [searchParams, removeAllItems])
