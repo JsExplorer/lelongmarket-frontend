@@ -6,7 +6,7 @@ const url = `${process.env.NEXT_API_URL}/products`;
 interface Query {
     categoryId? : string
     sizeId? : string
-    isSelling? : boolean
+    isFeatured? : boolean
 }
 
 const getProducts = async (query: Query): Promise<Product[]> => {
@@ -15,7 +15,7 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         query: {
             categoryId: query.categoryId,
             sizeId: query.sizeId,
-            isSelling: query.isSelling,
+            isSelling: query.isFeatured,
         },
     });
     const res = await fetch(formattedurl);

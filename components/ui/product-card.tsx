@@ -49,6 +49,7 @@ const ProductCard: React.FC<ProductCard> = ({
                     fill
                     alt="image"
                     className="aspect-square object-cover rounded-md"
+
                 />
                 <div className="opacity-0 group-hover:opacity-100 absolute transition w-full bottom-2">
                     <div className="flex gap-x-6 justify-center">
@@ -67,7 +68,7 @@ const ProductCard: React.FC<ProductCard> = ({
                 <p className="font-semibold text-lg">{data?.name}</p>
                 <p className="text-md text-gray-600">{data?.category?.name}</p>
             </div>
-            <div className="flex items-center justify-between font-semibold text-neutral-800">
+            <div className="flex items-center justify-between font-semibold text-neutral-500">
                 {priceFormatter.format(Number(data?.price))}
             </div>
         </div>

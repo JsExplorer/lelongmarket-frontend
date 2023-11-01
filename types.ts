@@ -17,7 +17,7 @@ export interface Product {
     category: Category
     name: string
     price: string
-    isSelling: boolean
+    isFeatured: boolean
     size: Size;
     images: Image[]
 }
